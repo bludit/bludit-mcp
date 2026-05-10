@@ -47,7 +47,15 @@ claude mcp add bludit npx -y bludit-mcp \
 
 ## Example: Claude Desktop
 
-Open Claude Destkop, go to Settings, go to Developer, click on the button Edit Config, and edit the file `claude_desktop_config.json`, you should add the MCP configuration like this.
+### 1. Open the Developer settings
+
+In Claude Desktop, go to **Settings → Developer** and click **Edit Config** to open `claude_desktop_config.json`.
+
+<img width="1312" height="912" alt="Claude Desktop Developer settings" src="https://github.com/user-attachments/assets/d8914d5c-6cfb-438d-b179-316ba326b424" />
+
+### 2. Add the Bludit entry and save
+
+Add the Bludit server inside the `mcpServers` block, then save the file and restart Claude Desktop.
 
 ```json
 {
@@ -61,35 +69,21 @@ Open Claude Destkop, go to Settings, go to Developer, click on the button Edit C
         "BLUDIT_AUTH_TOKEN": "tb60c24xasd3r98c39b5abaecv2be82d69104"
       }
     }
-  },
-  "preferences": {
-    "coworkWebSearchEnabled": true,
-    "coworkScheduledTasksEnabled": true,
-    "ccdScheduledTasksEnabled": true,
-    "epitaxyPrefs": {
-      "starred-local-code-sessions": [],
-      "starred-cowork-spaces": [],
-      "starred-session-groups": [],
-      "dframe-local-slice": {
-        "pinnedOrder": [],
-        "customGroupAssignments": {},
-        "customGroupOrder": {}
-      }
-    }
   }
 }
 ```
 
-Open the Claude Desktop Developer section.
-<img width="1312" height="912" alt="Screenshot 2026-05-10 at 23 16 31" src="https://github.com/user-attachments/assets/d8914d5c-6cfb-438d-b179-316ba326b424" />
+<img width="1192" height="795" alt="Editing claude_desktop_config.json" src="https://github.com/user-attachments/assets/f89da75d-b99b-42dd-a72a-7b01d5fe60da" />
 
-Setup the MCP, after the file is save, restart the Claude Desktop application.
-<img width="1192" height="795" alt="Screenshot 2026-05-10 at 23 16 49" src="https://github.com/user-attachments/assets/f89da75d-b99b-42dd-a72a-7b01d5fe60da" />
+### 3. Verify the server is running
 
-After you restarted the Claude Desktop you should see the Bludit MCP in Running state.
-<img width="1312" height="912" alt="Screenshot 2026-05-10 at 23 26 00" src="https://github.com/user-attachments/assets/fb3a6ddc-f089-4ebf-b771-5ea52a0f0d19" />
+After restarting Claude Desktop, the Bludit MCP should appear in the **Running** state.
 
-Ask any question related to pages, you can create, edit, delete or just list pages. Try creating a new page asking "Find the latest news about robots, create a new page based on that content, and choose a clear, engaging title for the page."
+<img width="1312" height="912" alt="Bludit MCP shown as Running" src="https://github.com/user-attachments/assets/fb3a6ddc-f089-4ebf-b771-5ea52a0f0d19" />
+
+### 4. Try it out
+
+Ask any question related to pages — you can create, edit, delete, or just list them. For example: *"Find the latest news about robots, create a new page based on that content, and choose a clear, engaging title for the page."*
 
 ## Tools
 
