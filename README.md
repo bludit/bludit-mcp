@@ -89,6 +89,8 @@ Setup the MCP, after the file is save, restart the Claude Desktop application.
 After you restarted the Claude Desktop you should see the Bludit MCP in Running state.
 <img width="1312" height="912" alt="Screenshot 2026-05-10 at 23 26 00" src="https://github.com/user-attachments/assets/fb3a6ddc-f089-4ebf-b771-5ea52a0f0d19" />
 
+Ask any question related to pages, you can create, edit, delete or just list pages. Try creating a new page asking "Find the latest news about robots, create a new page based on that content, and choose a clear, engaging title for the page."
+
 ## Tools
 
 | Tool | Description | Auth |
