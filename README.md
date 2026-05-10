@@ -83,7 +83,7 @@ After restarting Claude Desktop, the Bludit MCP should appear in the **Running**
 
 ### 4. Try it out
 
-Ask any question related to pages — you can create, edit, delete, or just list them. For example: *"Find the latest news about robots, create a new page based on that content, and choose a clear, engaging title for the page."*
+Ask any question related to pages. You can create, edit, delete, or just list them. For example: *"Find the latest news about robots, create a new page based on that content, and choose a clear, engaging title for the page."*
 
 ## Tools
 
