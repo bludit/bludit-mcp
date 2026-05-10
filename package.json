@@ -1,0 +1,43 @@
+{
+  "name": "bludit-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for Bludit CMS. Manage pages from Claude Desktop.",
+  "type": "module",
+  "bin": {
+    "bludit-mcp": "src/index.js"
+  },
+  "main": "src/index.js",
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.23.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bludit/bludit-mcp.git"
+  },
+  "homepage": "https://github.com/bludit/bludit-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/bludit/bludit-mcp/issues"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "bludit",
+    "cms",
+    "claude",
+    "claude-desktop"
+  ],
+  "author": "Diego Najar",
+  "license": "MIT"
+}
