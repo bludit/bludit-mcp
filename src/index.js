@@ -65,7 +65,49 @@ function ok(data) {
   return { content: [{ type: "text", text: JSON.stringify(data, null, 2) }] };
 }
 
-const server = new McpServer({ name: "bludit-mcp", version: "0.1.0" });
+// Fetch website settings at startup to build automatic context for Claude.
+// Requires AUTH_TOKEN; silently skips if it is absent or the call fails.
+async function fetchWebsiteSettings() {
+  if (!AUTH_TOKEN) return null;
+  try {
+    return await callApi({ method: "GET", path: "/settings", requireAuth: true });
+  } catch {
+    return null;
+  }
+}
+
+const websiteSettings = await fetchWebsiteSettings();
+
+function buildInstructions(settings) {
+  const parts = ["You are managing a Bludit CMS website via its REST API."];
+  if (!settings) return parts.join("\n");
+
+  // The API wraps the site fields under a 'data' key: { status, message, data: { ... } }
+  const site = settings.data ?? settings;
+  const name = site.title ?? site.name ?? "";
+  const description = site.description ?? "";
+  const language = site.language ?? site.locale ?? "";
+
+  if (name) parts.push(`Website name: ${name}`);
+  if (description) parts.push(`Description: ${description}`);
+  if (language) {
+    parts.push(`Language: ${language}. Write all content and replies in this language unless the user explicitly asks otherwise.`);
+  }
+  return parts.join("\n");
+}
+
+const server = new McpServer({
+  name: "bludit-mcp",
+  version: "0.1.0",
+  instructions: buildInstructions(websiteSettings)
+});
+
+server.tool(
+  "get_website_settings",
+  "Get the Bludit website settings including name, description, language, and other site configuration. Requires write authentication.",
+  {},
+  async () => ok(await callApi({ method: "GET", path: "/settings", requireAuth: true }))
+);
 
 server.tool(
   "list_pages",
