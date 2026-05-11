@@ -3,8 +3,9 @@
 MCP server for [Bludit CMS](https://www.bludit.com). Lets any MCP-compatible AI client (Claude Desktop, Gemini CLI, Cursor, Zed, Windsurf, Continue.dev, and others) read and write Bludit pages over the HTTP API.
 
 ## Requirements
+
 - Node.js 18+.
-- Bludit 3.21.2+ with the API plugin enabled.
+- Bludit 3.22.0+ with the API plugin enabled.
 - Bludit's API token.
 - Bludit's user AUTH token.
 
@@ -12,44 +13,19 @@ MCP server for [Bludit CMS](https://www.bludit.com). Lets any MCP-compatible AI 
 
 | Variable | Required | Description |
 |----------|----------|-------------|
-| `BLUDIT_URL` | yes | Site root, e.g. `https://www.example.com`. No trailing slash needed. |
-| `BLUDIT_API_TOKEN` | yes | API token from the API plugin settings. |
-| `BLUDIT_AUTH_TOKEN` | yes | The user's authentication token. |
+| `BLUDIT_URL` | yes | Site root, e.g. `https://www.example.com`. No trailing slash needed |
+| `BLUDIT_API_TOKEN` | yes | Admin Panel → Plugins → API → Settings → API token |
+| `BLUDIT_AUTH_TOKEN` | yes | The user's authentication token. Admin Panel → Users → admin → Security tab → Token |
 
-## MCP Configuration
+## Install it on Claude Desktop
 
-The server entry below works in every MCP-compatible client. Only the **config file path** and the **JSON top-level key** vary.
+### 0. Install Claude Desktop on your PC.
 
-```json
-{
-  "bludit": {
-    "command": "npx",
-    "args": ["-y", "bludit-mcp"],
-    "env": {
-      "BLUDIT_URL": "https://www.example.com",
-      "BLUDIT_API_TOKEN": "your-api-token",
-      "BLUDIT_AUTH_TOKEN": "your-user-auth-token"
-    }
-  }
-}
-```
-
-## Example: Claude Code (CLI shortcut)
-
-Claude Code can register the server without editing JSON:
-
-```bash
-claude mcp add bludit npx -y bludit-mcp \
-  --env BLUDIT_URL=https://www.example.com \
-  --env BLUDIT_API_TOKEN=... \
-  --env BLUDIT_AUTH_TOKEN=...
-```
-
-## Example: Claude Desktop
+- https://code.claude.com/docs/en/desktop
 
 ### 1. Open the Developer settings
 
-In Claude Desktop, go to **Settings → Developer** and click **Edit Config** to open `claude_desktop_config.json`.
+In Claude Desktop, go to **Settings → Developer** and click **Edit Config**, then edit the file `claude_desktop_config.json`.
 
 <img width="1312" height="912" alt="Claude Desktop Developer settings" src="https://github.com/user-attachments/assets/d8914d5c-6cfb-438d-b179-316ba326b424" />
 
@@ -65,10 +41,15 @@ Add the Bludit server inside the `mcpServers` block, then save the file and rest
       "args": ["-y", "bludit-mcp"],
       "env": {
         "BLUDIT_URL": "https://www.example.com",
-        "BLUDIT_API_TOKEN": "506c904a5b2fd92rc90c0c7139ffa716ddc26780d49431eca66ad4fv",
-        "BLUDIT_AUTH_TOKEN": "tb60c24xasd3r98c39b5abaecv2be82d69104"
+        "BLUDIT_API_TOKEN": "...",
+        "BLUDIT_AUTH_TOKEN": "..."
       }
-    }
+    },
+    ...
+  },
+  "preferences": {
+    "coworkScheduledTasksEnabled": true,
+    ...
   }
 }
 ```
@@ -83,7 +64,47 @@ After restarting Claude Desktop, the Bludit MCP should appear in the **Running**
 
 ### 4. Try it out
 
-Ask any question related to pages. You can create, edit, delete, or just list them. For example: *"Find the latest news about robots, create a new page based on that content, and choose a clear, engaging title for the page."*
+Ask any question related to pages. You can create, edit, delete, or just list them.
+
+- List existing pages: *What pages do I currently have on my blog?*
+- Brainstorm + Create: *I'm a travel writer and I need a catchy title and intro paragraph for a post about slow travel in rural Spain. Create a new draft page with it.*
+- Edit / refine: *That intro is good but too formal. Rewrite it with a more casual, personal tone and update the page.*
+- Delete: *That was just a draft, I don't need it anymore — delete the 'Salt and Sun' page.*
+
+## Install on Claude Code CLI
+
+```bash
+claude mcp add bludit \
+  -e BLUDIT_URL=https://www.example.com \
+  -e BLUDIT_API_TOKEN=... \
+  -e BLUDIT_AUTH_TOKEN=... \
+  -- npx -y bludit-mcp
+```
+
+Check if the MCP is running
+```bash
+claude mcp list
+
+...
+bludit: npx -y bludit-mcp - ✓ Connected
+```
+
+## Install on Gemini CLI
+
+```
+gemini mcp add bludit npx -y bludit-mcp \
+  -e BLUDIT_URL=https://www.example.com \
+  -e BLUDIT_API_TOKEN=... \
+  -e BLUDIT_AUTH_TOKEN=...
+```
+
+Check if the MCP is running
+```
+gemini mcp list
+
+Configured MCP servers:
+✓ bludit: npx -y bludit-mcp (stdio) - Connected
+```
 
 ## Tools
 
