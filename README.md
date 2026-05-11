@@ -27,6 +27,8 @@ MCP server for [Bludit CMS](https://www.bludit.com). Lets any MCP-compatible AI 
 
 In Claude Desktop, go to **Settings → Developer** and click **Edit Config**, then edit the file `claude_desktop_config.json`.
 
+<img width="1312" height="912" alt="Claude Desktop" src="https://github.com/user-attachments/assets/337ab3df-5767-4668-9d26-cfed13babbc1" />
+
 <img width="1312" height="912" alt="Claude Desktop Developer settings" src="https://github.com/user-attachments/assets/d8914d5c-6cfb-438d-b179-316ba326b424" />
 
 ### 2. Add the Bludit entry and save
